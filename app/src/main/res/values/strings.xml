@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Movies DB</string>
+    <string name="year_filter">Year Filter</string>
+    <string name="min_year">Min. Year</string>
+    <string name="max_year">Max. Year</string>
+    <string name="filter">Filter</string>
+    <string name="reset">Reset</string>
+</resources>
