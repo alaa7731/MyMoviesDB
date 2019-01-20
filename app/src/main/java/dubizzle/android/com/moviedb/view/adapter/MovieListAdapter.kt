@@ -27,20 +27,11 @@ class MovieListAdapter(private val delegate: MovieListViewHolder.Delegate) : Bas
             clearSections()
             addSection(ArrayList<Movie>())
             sections[0].addAll(it)
-             notifyDataSetChanged()
+            notifyDataSetChanged()
+
         }
     }
 
-    fun getMovieList(): ArrayList<Movie> {
-        var allMovies = ArrayList<Movie>(0)
-        sections.forEach {
-            it.forEach {
-                if (it is Movie)
-                    allMovies.add(it)
-            }
-        }
-        return allMovies
-    }
 
     override fun layout(sectionRow: SectionRow): Int {
         return R.layout.item_poster

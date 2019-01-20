@@ -5,4 +5,6 @@
     <string name="max_year">Max. Year</string>
     <string name="filter">Filter</string>
     <string name="reset">Reset</string>
+    <string name="choose_start_date">Please choose the start date</string>
+    <string name="choose_end_date">Please choose the end date</string>
 </resources>

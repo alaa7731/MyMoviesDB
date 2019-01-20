@@ -97,6 +97,7 @@ class MovieListFragment : Fragment(), MovieListViewHolder.Delegate {
     }
 
     private fun loadMore(page: Int) {
+        currentPage = page
         viewModel.postMoviePage(page)
     }
 
@@ -121,6 +122,8 @@ class MovieListFragment : Fragment(), MovieListViewHolder.Delegate {
         adapter.refreshMovieList(originalMovies!!)
     }
 
+    private var currentPage: Int = 1
+
     fun filterMovies(startDate: Int, endDate: Int) {
         isFiltered = true
         this.startDate = startDate
@@ -129,14 +132,16 @@ class MovieListFragment : Fragment(), MovieListViewHolder.Delegate {
 
         allMovies.forEach {
             it.forEach {
-                var releaseDate = it.release_date.subSequence(0, 4).toString().toInt()
-                if ((releaseDate >= startDate) && (releaseDate <= endDate)) {
-                    filteredMoviesList.add(it)
+                if (it.release_date.length > 3) {
+                    var releaseDate = it.release_date.subSequence(0, 4).toString().toInt()
+                    if ((releaseDate >= startDate) && (releaseDate <= endDate)) {
+                        filteredMoviesList.add(it)
+                    }
                 }
             }
         }
         filteredMovies?.data = filteredMoviesList
         adapter.refreshMovieList(filteredMovies!!)
-
+        loadMore(++currentPage)
     }
 }

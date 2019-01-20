@@ -19,6 +19,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.Toast
 import com.bigkoo.pickerview.OptionsPickerView
 import dubizzle.android.com.moviedb.utils.DialogUtils
 import java.util.*
@@ -94,6 +95,14 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         }
 
         bFilter.setOnClickListener {
+            if (startDate.isEmpty()) {
+                Toast.makeText(this@MainActivity, getString(R.string.choose_start_date), Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+            if (endDate.isEmpty()) {
+                Toast.makeText(this@MainActivity, getString(R.string.choose_end_date), Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
             (supportFragmentManager
                     .findFragmentByTag(MovieListFragment::class.java.name) as MovieListFragment)
                     .filterMovies(startDate.toInt(), endDate.toInt())
